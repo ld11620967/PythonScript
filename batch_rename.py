@@ -4,9 +4,9 @@ import os;
 import time;
 
 def rename():
-	# path='D:\\temp';
-	path_temp='C:\\Users\\丽丽\\Desktop'
-	path=unicode(path_temp, "utf-8")#中文文件路径转码
+	#path_temp='C:\\Users\\丽丽\\Desktop'
+	#path=unicode(path_temp, "utf-8")#中文文件路径转码
+	path=os.getcwd()#获取当前目录路径
 	for dirpaths, dirnames, filenames in os.walk(path):
 		for file in filenames:
 			Olddir=os.path.join(dirpaths,file)#原来的文件路径
