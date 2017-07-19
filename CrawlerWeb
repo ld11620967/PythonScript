@@ -1,0 +1,37 @@
+#coding:utf-8
+import urllib2
+import re
+
+url = "http://m.baoliny.com/wapbook-111398/"
+user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"
+headers = {"User-Agent": user_agent}
+request = urllib2.Request(url, headers=headers)
+response = urllib2.urlopen(request)
+get = response.read().decode('GB2312').encode('utf-8')
+
+reg1=re.compile(r'<li><a href=\'(.*?)\'>')
+
+itemss=re.findall(reg1,get)
+print itemss
+
+# url='http://m.baoliny.com'+itemss
+# print url
+
+# url = "http://m.baoliny.com/wapbook-111398-33747590"
+# user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"
+# headers = {"User-Agent": user_agent}
+# request = urllib2.Request(url, headers=headers)
+# response = urllib2.urlopen(request)
+# get = response.read().decode('GB2312').encode('utf-8')
+#
+# reg1=re.compile(r'<div id="nr1">(.*?)<br/></div>')
+# itemss=re.findall(reg1,get)
+# for i in itemss:
+#     i=i.replace('<br/><br/>','\n')
+#     i=i.replace('&nbsp;&nbsp;&nbsp;&nbsp;','      ')
+#     i=i.replace('【风云小说阅读网www.baoliny.com】','')
+#     print i
+#
+#     f=open('text1.txt','a')
+#     f.write('\n\n'+i)
+#     f.close()
