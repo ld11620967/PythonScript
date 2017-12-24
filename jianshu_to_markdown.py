@@ -64,7 +64,7 @@ for dirpaths, dirnames, filenames in os.walk(path):
                     if '<img' in line[i]:
                         a = re.compile(r'^<div(.*?)<img data-original-src="')
                         b = re.compile(r'" data-original-width(.*?)"></div>$')
-                        line[i]=a.sub('![图片描述](',line[i])
+                        line[i]=a.sub('![ͼƬ??](',line[i])
                         line[i]=b.sub(')',line[i])
 
                     if '</p>' in line[i]:
@@ -85,6 +85,6 @@ for dirpaths, dirnames, filenames in os.walk(path):
                     if '??' in line[i]:
                         line[i]=line[i].replace('??','')        
  
-            open('Markdown.txt','w').writelines(line)
+            open('Markdown.txt','w',encoding='utf-8').writelines(line)
         else:
             pass
