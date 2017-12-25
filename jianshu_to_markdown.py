@@ -43,16 +43,22 @@ for dirpaths, dirnames, filenames in os.walk(path):
                         line[i]=line[i].replace('</h5>','')
 
                     if '<pre><code class="java">' in line[i]:
-                        line[i]=line[i].replace('<pre><code class="java">','```java')
+                        line[i]=line[i].replace('<pre><code class="java">','```java\n')
                     if '<pre><code class="xml">' in line[i]:
-                        line[i]=line[i].replace('<pre><code class="xml">','```\n')
+                        line[i]=line[i].replace('<pre><code class="xml">','```xml\n')
                     if '<pre><code class="groovy">' in line[i]:
-                        line[i]=line[i].replace('<pre><code class="groovy">','```')
+                        line[i]=line[i].replace('<pre><code class="groovy">','```\n')
                     if '<pre><code>' in line[i]:
-                        line[i]=line[i].replace('<pre><code>','```')
+                        line[i]=line[i].replace('<pre><code>','```\n')
                     if '</code></pre>' in line[i]:
-                        line[i]=line[i].replace('</code></pre>','```')
+                        line[i]=line[i].replace('</code></pre>','```\n')
 
+                    if '          <p>' in line[i]:
+                        line[i]=line[i].replace('          <p>','- ')
+                    if '<li><p>' in line[i]:
+                        line[i]=line[i].replace('<li><p>','- ')
+                    if '</p></li>' in line[i]:
+                        line[i]=line[i].replace('</p></li>','')
                     if '<li>' in line[i]:
                         line[i]=line[i].replace('<li>','- ')
                     if '<strong>' in line[i]:
@@ -60,11 +66,11 @@ for dirpaths, dirnames, filenames in os.walk(path):
                     if '</strong>' in line[i]:
                         line[i]=line[i].replace('</strong>','**')
                     if '<blockquote>' in line[i]:
-                        line[i]=line[i].replace('<blockquote>','>')     
+                        line[i+1]=line[i+1].replace('<p>','>')     
                     if '<img' in line[i]:
                         a = re.compile(r'^<div(.*?)<img data-original-src="')
                         b = re.compile(r'" data-original-width(.*?)"></div>$')
-                        line[i]=a.sub('![ͼƬ??](',line[i])
+                        line[i]=a.sub('![Picture](',line[i])
                         line[i]=b.sub(')',line[i])
 
                     if '</p>' in line[i]:
