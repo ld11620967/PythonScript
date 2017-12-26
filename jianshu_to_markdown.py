@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#! /usr/bin/env python
 # -*- coding: utf-8 -*-
 import os;
 import re
@@ -66,12 +66,22 @@ for dirpaths, dirnames, filenames in os.walk(path):
                     if '</strong>' in line[i]:
                         line[i]=line[i].replace('</strong>','**')
                     if '<blockquote>' in line[i]:
-                        line[i+1]=line[i+1].replace('<p>','>')     
+                        line[i+1]=line[i+1].replace('<p>','>')
+
                     if '<img' in line[i]:
                         a = re.compile(r'^<div(.*?)<img data-original-src="')
                         b = re.compile(r'" data-original-width(.*?)"></div>$')
                         line[i]=a.sub('![Picture](',line[i])
                         line[i]=b.sub(')',line[i])
+
+                    if '<th>' in line[i]:
+                        line[i]=line[i].replace('<th>','|')
+                    # if '</th>' in line[i]:
+                    #     line[i]=line[i].replace('</th>','')
+                    if '</thead>' in line[i]:
+                        line[i]=line[i].replace('</thead>',':-:|:-:|:-:')
+                    if '<td>' in line[i]:
+                        line[i]=line[i].replace('<td>','|')
 
                     if '</p>' in line[i]:
                         line[i]=line[i].replace('</p>','\r\n')
