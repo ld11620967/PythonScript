@@ -52,9 +52,15 @@ for dirpaths, dirnames, filenames in os.walk(path):
                         line[i]=line[i].replace('<pre><code>','```\n')
                     if '</code></pre>' in line[i]:
                         line[i]=line[i].replace('</code></pre>','```\n')
+                    if '<code>' in line[i]:
+                        line[i]=line[i].replace('<code>','```')
+                    if '</code>' in line[i]:
+                        line[i]=line[i].replace('</code>','```')
 
                     if '          <p>' in line[i]:
                         line[i]=line[i].replace('          <p>','- ')
+                    # if '<ul>' in line[i]:
+                    #     line[i+1]=line[i+1].replace('<li>',' - ')
                     if '<li><p>' in line[i]:
                         line[i]=line[i].replace('<li><p>','- ')
                     if '</p></li>' in line[i]:
