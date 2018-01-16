@@ -12,6 +12,9 @@ def rename():
 			Olddir=os.path.join(dirpaths,file)#原来的文件路径
 			filename=os.path.splitext(file)[0]#文件名
 			filetype=os.path.splitext(file)[1]#文件扩展名
+			# if file.find('需要被替换的')>0:#如果文件名中含有...
+			# 	Dir_temp=filename.replace('需要被替换的','替换的')
+			# 	Newdir=os.path.join(dirpaths,Dir_temp+'.avi')#新的文件路径
 			if file.find('----')>0:#如果文件名中含有---
 				Dir_temp=os.path.join(dirpaths,filename.split('----')[0])
 				Newdir=os.path.join(dirpaths,Dir_temp+str('----')+time.strftime("%Y.%m.%d",time.localtime())+filetype)#新的文件路径
