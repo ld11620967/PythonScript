@@ -12,11 +12,11 @@ for dirpaths, dirnames, filenames in os.walk(path):
                 with open('Jianshu.txt','r') as f_r:
                     line_r= f_r.readlines()
                     for i in range(len(line_r)):
-                        if '<div data-note-content class="show-content">' in line_r[i-1]:
+                        if '<div class="show-content-free">' in line_r[i-1]:
                             erase=True
                         if erase:
                             f_w.write(line_r[i])
-                        if '<!--  -->' in line_r[i]:
+                        if '<!-- 连载目录项 -->' in line_r[i]:
                             erase=False
             with open('Markdown.txt','r') as f:
                 line= f.readlines() 
