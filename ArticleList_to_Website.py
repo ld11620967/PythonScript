@@ -42,7 +42,7 @@ for dirpaths, dirnames, filenames in os.walk(path):
             #                 line_r[i]=''   
             # open('Website1.txt','w',encoding='utf-8').writelines(line_r)
 
-                    if 'http://www.apkbus.com/' in line[i]:
+                    if 'http://www' in line[i]:
                         line[i]=line[i]
                     else:
                         line[i]=''   
