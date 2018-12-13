@@ -9,7 +9,7 @@ for dirpaths, dirnames, filenames in os.walk(path):
     for filename in filenames:
         if filename.endswith('txt'):
             with open('Markdown.txt','w') as f_w:
-                with open('Jianshu.txt','r') as f_r:
+                with open('Original.txt','r') as f_r:
                     line_r= f_r.readlines()
                     for i in range(len(line_r)):
                         if '<div class="show-content-free">' in line_r[i-1]:
@@ -22,27 +22,27 @@ for dirpaths, dirnames, filenames in os.walk(path):
                 line= f.readlines() 
                 for i in range(len(line)): 
                     if '<h1>' in line[i]:
-                        line[i]=line[i].replace('<h1>','##')   
+                        line[i]=line[i].replace('<h1>','### ')   
                     if '</h1>' in line[i]:
                         line[i]=line[i].replace('</h1>','')               
                     if '<h2>' in line[i]:
-                        line[i]=line[i].replace('<h2>','####')
+                        line[i]=line[i].replace('<h2>','### ')
                     if '</h2>' in line[i]:
                         line[i]=line[i].replace('</h2>','')
                     if '<h3>' in line[i]:
-                        line[i]=line[i].replace('<h3>','####')
+                        line[i]=line[i].replace('<h3>','#### ')
                     if '</h3>' in line[i]:
                         line[i]=line[i].replace('</h3>','')
                     if '<h4>' in line[i]:
-                        line[i]=line[i].replace('<h4>','#####')
+                        line[i]=line[i].replace('<h4>','#### ')
                     if '</h4>' in line[i]:
                         line[i]=line[i].replace('</h4>','')
                     if '<h5>' in line[i]:
-                        line[i]=line[i].replace('<h5>','######')
+                        line[i]=line[i].replace('<h5>','##### ')
                     if '</h5>' in line[i]:
                         line[i]=line[i].replace('</h5>','')
                     if '<h6>' in line[i]:
-                        line[i]=line[i].replace('<h6>','######')
+                        line[i]=line[i].replace('<h6>','##### ')
                     if '</h6>' in line[i]:
                         line[i]=line[i].replace('</h6>','')                        
 

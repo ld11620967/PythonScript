@@ -1,13 +1,14 @@
 import java.io.File
 import java.nio.charset.Charset
 
-val filename = "D:\\Jianshu.txt"
-val file = File(filename)
+val currentDir = System.getProperty("user.dir")
+// val file = File(currentDir,"Original.txt")
+val file = File("C:\\Users\\liangd\\Desktop\\Markdwon\\Original.txt")
+println(file)
 //val contents = file.readText(Charset.forName("GBK"))
 // println(contents)
 
-val currentDir = System.getProperty("user.dir")
-val outFile = File(currentDir, "hehe.txt")
+val outFile = File(currentDir, "Markdown.txt")
 outFile.delete()
 var erase = false
 
