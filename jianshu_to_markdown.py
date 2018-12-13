@@ -26,7 +26,7 @@ for dirpaths, dirnames, filenames in os.walk(path):
                     if '</h1>' in line[i]:
                         line[i]=line[i].replace('</h1>','')               
                     if '<h2>' in line[i]:
-                        line[i]=line[i].replace('<h2>','###')
+                        line[i]=line[i].replace('<h2>','####')
                     if '</h2>' in line[i]:
                         line[i]=line[i].replace('</h2>','')
                     if '<h3>' in line[i]:
@@ -41,6 +41,10 @@ for dirpaths, dirnames, filenames in os.walk(path):
                         line[i]=line[i].replace('<h5>','######')
                     if '</h5>' in line[i]:
                         line[i]=line[i].replace('</h5>','')
+                    if '<h6>' in line[i]:
+                        line[i]=line[i].replace('<h6>','######')
+                    if '</h6>' in line[i]:
+                        line[i]=line[i].replace('</h6>','')                        
 
                     if '<pre><code class="java">' in line[i]:
                         line[i]=line[i].replace('<pre><code class="java">','```java\n')
@@ -57,8 +61,25 @@ for dirpaths, dirnames, filenames in os.walk(path):
                     if '</code>' in line[i]:
                         line[i]=line[i].replace('</code>','```')
 
-                    if '          <p>' in line[i]:
-                        line[i]=line[i].replace('          <p>','- ')
+                    if '<a href="' in line[i]:
+                        line[i]=line[i].replace('<a href="','[')
+                    if '<a href="https://link.jianshu.com?t=' in line[i]:
+                        line[i]=line[i].replace('<a href="https://link.jianshu.com?t=','[')
+                    if '" target="_blank"' in line[i]:
+                        line[i]=line[i].replace('" target="_blank"',']')
+
+                    if 'rel="nofollow">' in line[i]:
+                        line[i]=line[i].replace('rel="nofollow">','(')
+                    if '</a>' in line[i]:
+                        line[i]=line[i].replace('</a>',')')
+
+                    if '%2F' in line[i]:
+                        line[i]=line[i].replace('%2F','/')                       
+                    if '%3A' in line[i]:
+                        line[i]=line[i].replace('%3A',':')
+
+                    if '            <p>' in line[i]:
+                        line[i]=line[i].replace('            <p>','')
                     # if '<ul>' in line[i]:
                     #     line[i+1]=line[i+1].replace('<li>',' - ')
                     if '<li><p>' in line[i]:
@@ -84,28 +105,26 @@ for dirpaths, dirnames, filenames in os.walk(path):
                         line[i]=line[i].replace('<th>','|')
                     # if '</th>' in line[i]:
                     #     line[i]=line[i].replace('</th>','')
+                    # if '</thead>' in line[i]:
+                    #     line[i]=line[i].replace('</thead>',':-:|:-:|:-:')
+
                     if '</thead>' in line[i]:
-                        line[i]=line[i].replace('</thead>',':-:|:-:|:-:')
+                        line[i]=line[i].replace('</thead>','| -------- | -------- |')    
                     if '<td>' in line[i]:
                         line[i]=line[i].replace('<td>','|')
 
                     if '</p>' in line[i]:
                         line[i]=line[i].replace('</p>','\r\n')
 
-
                     c = re.compile(r'<[^>]+>(.*)</[^>]+>',re.S)
                     line[i] = c.sub('',line[i])
                     z = re.compile(r'<[^>]+>',re.S)
                     line[i] = z.sub('',line[i])         
-                    # if len(line[i].strip()) == 0:
-                    #     line[i]=line[i].strip()
 
                     if '&lt;' in line[i]:
                         line[i]=line[i].replace('&lt;','<')
                     if '&gt;' in line[i]:
-                        line[i]=line[i].replace('&gt;','>')
-                    if '??' in line[i]:
-                        line[i]=line[i].replace('??','')        
+                        line[i]=line[i].replace('&gt;','>')   
  
             open('Markdown.txt','w',encoding='utf-8').writelines(line)
         else:
