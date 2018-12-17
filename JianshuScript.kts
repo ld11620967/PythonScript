@@ -2,7 +2,7 @@ import java.io.File
 import java.nio.charset.Charset
 
 val currentDir = System.getProperty("user.dir")
-val file = File(currentDir,"Original.txt")
+val file = File(currentDir,"Original_Jianshu.txt")
 //val contents = file.readText(Charset.forName("GBK"))
 // println(contents)
 
