@@ -59,26 +59,14 @@ file.forEachLine(Charset.forName("GBK")) {
         if ("</code>" in line) {
             line = line.replace("</code>", "```")
         }
-        if ("<p>" in line) {
-            line = line.replace("<p>", "").replace("</p>", "")
-        }
         if ("<a href=\"" in line) {
-            line = line.replace("<a href=\"", "[").replace("\" target=\"_blank\" ", "]")
+            line = line.replace("<a href=\"", "(").replace("\" target=\"_blank\" ", ")")
         }
         if ("<a href=\"https://link.jianshu.com?t=" in line) {
             line = line.replace("<a href=\"https://link.jianshu.com?t=", "")
         }
         if ("rel=\"nofollow\">" in line) {
-            line = line.replace("rel=\"nofollow\">", "(").replace("</a>", ")")
-        }
-        if ("<th>" in line) {
-            line = line.replace("<th>", "|")
-        }
-        if ("</thead>" in line) {
-            line = line.replace("</thead>", "| -------- | -------- |")
-        }
-        if ("<td>" in line) {
-            line = line.replace("<td>", "|")
+            line = line.replace("rel=\"nofollow\">", "[").replace("</a>", "]")
         }
         if ("<li>" in line) {
             line = line.replace("<li>", "- ")
@@ -94,11 +82,63 @@ file.forEachLine(Charset.forName("GBK")) {
             val r2 = Regex("\" data-original-width(.*?)\"></div>")
             line = line.replace(r1, "![Picture](").replace(r2, ")")
         }
+        if ("</p>" in line) {
+            line = line.replace("</p>", "\r\n")
+        }
+
+
+//        if ("<th>" in line) {
+//            line = line.replace("<th>", "|")
+//        }
+//        if ("</thead>" in line) {
+//            line = line.replace("</thead>", "| -------- | -------- |")
+//        }
+//        if ("<td>" in line) {
+//            line = line.replace("<td>", "|")
+//        }
+
+
+        if ("<table>" in it) {
+            outFile.appendText(it)
+        }
+        if ("</table>" in it) {
+            outFile.appendText(it)
+        }
+        if ("<thead>" in it) {
+            outFile.appendText(it)
+        }
+        if ("</thead>" in it) {
+            outFile.appendText(it)
+        }
+        if ("<tr>" in it) {
+            outFile.appendText(it)
+        }
+        if ("</tr>" in it) {
+            outFile.appendText(it)
+        }
+        if ("<th>" in it) {
+            outFile.appendText(it)
+        }
+//        if ("</th>" in it) {
+//            outFile.appendText(it)
+//        }
+        if ("<td>" in it) {
+            outFile.appendText(it)
+        }
+//        if ("</td>" in it) {
+//            outFile.appendText(it)
+//        }
+        if ("<tbody>" in it) {
+            outFile.appendText(it)
+        }
+        if ("</tbody>" in it) {
+            outFile.appendText(it)
+        }
+
 
         val r1 = Regex("<[^>]+>(.*)</[^>]+>", RegexOption.CANON_EQ)
         val r2 = Regex("<[^>]+>", RegexOption.CANON_EQ)
         line = line.replace(r1, "").replace(r2, "")
-
 
         if ("&lt;" in line) {
             line = line.replace("&lt;", "<")
@@ -106,8 +146,6 @@ file.forEachLine(Charset.forName("GBK")) {
         if ("&gt;" in line) {
             line = line.replace("&gt;", ">")
         }
-
         outFile.appendText(line + "\r\n")
     }
 }
-
