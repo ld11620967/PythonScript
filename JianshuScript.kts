@@ -149,3 +149,24 @@ file.forEachLine(Charset.forName("GBK")) {
         outFile.appendText(line + "\r\n")
     }
 }
+
+
+
+//fun exchange(target: String, pos1: Int, pos2: Int): String {
+//    var pos1 = pos1
+//    var pos2 = pos2
+//    if (pos2 < pos1) {
+//        val temp = pos2
+//        pos2 = pos1
+//        pos1 = temp
+//    }
+//    if (pos1 == pos2 || pos2 >= target.length || pos1 <= -1) {
+//        return target
+//    }
+//    val str1 = target.substring(pos1, pos1 + 1)
+//    val str2 = target.substring(pos2, pos2 + 1)
+//    val buf = StringBuffer(target.length)
+//    return buf.append(target.substring(0, pos1)).append(str2)
+//        .append(target.substring(pos1 + 1, pos2)).append(str1)
+//        .append(target.substring(pos2 + 1)).toString()
+//}
