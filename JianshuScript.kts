@@ -1,8 +1,10 @@
+@file:Suppress("NAME_SHADOWING")
+
 import java.io.File
 import java.nio.charset.Charset
 
 val currentDir = System.getProperty("user.dir")
-val file = File(currentDir,"Original_Jianshu.txt")
+val file = File(currentDir, "Original_Jianshu.txt")
 //val contents = file.readText(Charset.forName("GBK"))
 // println(contents)
 
@@ -86,7 +88,6 @@ file.forEachLine(Charset.forName("GBK")) {
             line = line.replace("</p>", "\r\n")
         }
 
-
 //        if ("<th>" in line) {
 //            line = line.replace("<th>", "|")
 //        }
@@ -96,7 +97,6 @@ file.forEachLine(Charset.forName("GBK")) {
 //        if ("<td>" in line) {
 //            line = line.replace("<td>", "|")
 //        }
-
 
         if ("<table>" in it) {
             outFile.appendText(it)
@@ -119,22 +119,15 @@ file.forEachLine(Charset.forName("GBK")) {
         if ("<th>" in it) {
             outFile.appendText(it)
         }
-//        if ("</th>" in it) {
-//            outFile.appendText(it)
-//        }
         if ("<td>" in it) {
             outFile.appendText(it)
         }
-//        if ("</td>" in it) {
-//            outFile.appendText(it)
-//        }
         if ("<tbody>" in it) {
             outFile.appendText(it)
         }
         if ("</tbody>" in it) {
             outFile.appendText(it)
         }
-
 
         val r1 = Regex("<[^>]+>(.*)</[^>]+>", RegexOption.CANON_EQ)
         val r2 = Regex("<[^>]+>", RegexOption.CANON_EQ)
@@ -146,27 +139,18 @@ file.forEachLine(Charset.forName("GBK")) {
         if ("&gt;" in line) {
             line = line.replace("&gt;", ">")
         }
+
+        if (")[" in line && "(" in line && "]" in line) {
+            val r1=Regex("^(.*?)\\(")
+            val r2=Regex("\\((.*?)\\)")
+            val r3=Regex("\\[(.*?)\\]")
+            val r4=Regex("\\](.*?)$")
+            val line1 = r1.find(line)!!.value
+            val line2 = r2.find(line)!!.value
+            val line3 = r3.find(line)!!.value
+            val line4 = r4.find(line)!!.value
+            line=line1.substring(0,line1.length-1)+line3+line2+line4.substring(1,line4.length)
+        }
         outFile.appendText(line + "\r\n")
     }
 }
-
-
-
-//fun exchange(target: String, pos1: Int, pos2: Int): String {
-//    var pos1 = pos1
-//    var pos2 = pos2
-//    if (pos2 < pos1) {
-//        val temp = pos2
-//        pos2 = pos1
-//        pos1 = temp
-//    }
-//    if (pos1 == pos2 || pos2 >= target.length || pos1 <= -1) {
-//        return target
-//    }
-//    val str1 = target.substring(pos1, pos1 + 1)
-//    val str2 = target.substring(pos2, pos2 + 1)
-//    val buf = StringBuffer(target.length)
-//    return buf.append(target.substring(0, pos1)).append(str2)
-//        .append(target.substring(pos1 + 1, pos2)).append(str1)
-//        .append(target.substring(pos2 + 1)).toString()
-//}
