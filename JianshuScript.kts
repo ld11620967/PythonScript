@@ -64,8 +64,12 @@ file.forEachLine(Charset.forName("GBK")) {
         if ("<a href=\"" in line) {
             line = line.replace("<a href=\"", "(").replace("\" target=\"_blank\" ", ")")
         }
-        if ("<a href=\"https://link.jianshu.com?t=" in line) {
-            line = line.replace("<a href=\"https://link.jianshu.com?t=", "")
+        if ("https://link.jianshu.com?t=" in line) {
+            line = line.replace("https://link.jianshu.com?t=", "")
+        }
+        if ("links.jianshu.com/go?to=https%3A%2F%2F" in line) {
+            line = line.replace("links.jianshu.com/go?to=https%3A%2F%2F", "")
+            line = line.replace("%2F", "/")           
         }
         if ("rel=\"nofollow\">" in line) {
             line = line.replace("rel=\"nofollow\">", "[").replace("</a>", "]")
@@ -87,17 +91,6 @@ file.forEachLine(Charset.forName("GBK")) {
         if ("</p>" in line) {
             line = line.replace("</p>", "\r\n")
         }
-
-//        if ("<th>" in line) {
-//            line = line.replace("<th>", "|")
-//        }
-//        if ("</thead>" in line) {
-//            line = line.replace("</thead>", "| -------- | -------- |")
-//        }
-//        if ("<td>" in line) {
-//            line = line.replace("<td>", "|")
-//        }
-
         if ("<table>" in it) {
             outFile.appendText(it)
         }
