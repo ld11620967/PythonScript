@@ -19,8 +19,8 @@ file.forEachLine(Charset.forName("GBK")) {
         erase = false
     } else if (erase) {
         var line = it
-        if ("            <p>" in line) {
-            line = line.replace("            <p>", "")
+        if ("            " in line) {
+            line = line.replace("            ", "")
         }
         if ("<h1>" in line) {
             line = line.replace("<h1>", "## ").replace("</h1>", "")
