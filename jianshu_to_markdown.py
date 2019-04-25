@@ -9,7 +9,7 @@ for dirpaths, dirnames, filenames in os.walk(path):
     for filename in filenames:
         if filename.endswith('txt'):
             with open('Markdown.txt','w') as f_w:
-                with open('Original_Jianshu.txt','r') as f_r:
+                with open('Original.txt','r') as f_r:
                     line_r= f_r.readlines()
                     for i in range(len(line_r)):
                         if '<div class="show-content-free">' in line_r[i-1]:
@@ -22,11 +22,11 @@ for dirpaths, dirnames, filenames in os.walk(path):
                 line= f.readlines() 
                 for i in range(len(line)): 
                     if '            ' in line[i]:
-                        line[i]=line[i].replace('            ','') 
+                        line[i]=line[i].replace('            ','')
                     if '<h1>' in line[i]:
                         line[i]=line[i].replace('<h1>','## ')   
                     if '</h1>' in line[i]:
-                        line[i]=line[i].replace('</h1>','')               
+                        line[i]=line[i].replace('</h1>','')
                     if '<h2>' in line[i]:
                         line[i]=line[i].replace('<h2>','## ')
                     if '</h2>' in line[i]:
@@ -46,7 +46,7 @@ for dirpaths, dirnames, filenames in os.walk(path):
                     if '<h6>' in line[i]:
                         line[i]=line[i].replace('<h6>','#### ')
                     if '</h6>' in line[i]:
-                        line[i]=line[i].replace('</h6>','')                        
+                        line[i]=line[i].replace('</h6>','')
 
                     if '<pre><code class="java">' in line[i]:
                         line[i]=line[i].replace('<pre><code class="java">','```java\n')
@@ -100,7 +100,7 @@ for dirpaths, dirnames, filenames in os.walk(path):
                     # if '<th>' in line[i]:
                     #     line[i]=line[i].replace('<th>','|')
                     # if '</thead>' in line[i]:
-                    #     line[i]=line[i].replace('</thead>','| -------- | -------- |')    
+                    #     line[i]=line[i].replace('</thead>','| -------- | -------- |')
                     # if '<td>' in line[i]:
                     #     line[i]=line[i].replace('<td>','|')
 
@@ -129,7 +129,7 @@ for dirpaths, dirnames, filenames in os.walk(path):
                     if "<th>" in line[i]:
                         continue
                     if "</th>" in line[i]:
-                        continue                                                                
+                        continue
                     if "<td>" in line[i]:
                         continue
                     if "</td>" in line[i]:
@@ -142,12 +142,12 @@ for dirpaths, dirnames, filenames in os.walk(path):
                     c = re.compile(r'<[^>]+>(.*)</[^>]+>',re.S)
                     line[i] = c.sub('',line[i])
                     z = re.compile(r'<[^>]+>',re.S)
-                    line[i] = z.sub('',line[i]) 
+                    line[i] = z.sub('',line[i])
 
                     if '&lt;' in line[i]:
                         line[i]=line[i].replace('&lt;','<')
                     if '&gt;' in line[i]:
-                        line[i]=line[i].replace('&gt;','>')   
+                        line[i]=line[i].replace('&gt;','>')
 
             open('Markdown.txt','w',encoding='utf-8').writelines(line)
         else:
