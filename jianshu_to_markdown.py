@@ -12,17 +12,15 @@ for dirpaths, dirnames, filenames in os.walk(path):
                 with open('Original.txt','r') as f_r:
                     line_r= f_r.readlines()
                     for i in range(len(line_r)):
-                        if '<div class="show-content-free">' in line_r[i-1]:
+                        if '<article class="_2rhmJa">' in line_r[i-1]:
                             erase=True
                         if erase:
                             f_w.write(line_r[i])
-                        if '<!-- 连载目录项 -->' in line_r[i]:
+                        if '</article>' in line_r[i]:
                             erase=False
             with open('Markdown.txt','r') as f:
                 line= f.readlines() 
                 for i in range(len(line)): 
-                    if '            ' in line[i]:
-                        line[i]=line[i].replace('            ','')
                     if '<h1>' in line[i]:
                         line[i]=line[i].replace('<h1>','## ')   
                     if '</h1>' in line[i]:
@@ -65,16 +63,14 @@ for dirpaths, dirnames, filenames in os.walk(path):
 
                     if '<a href="' in line[i]:
                         line[i]=line[i].replace('<a href="','(')
-                        line[i]=line[i].replace('" target="_blank" ',')')
+                        line[i]=line[i].replace('" target=',')')
+                        line[i]=line[i].replace('"_blank">','[')
+                        line[i]=line[i].replace('</a>',']')
                     if '<a href="https://link.jianshu.com?t=' in line[i]:
                         line[i]=line[i].replace('https://link.jianshu.com?t=','')
                     if 'links.jianshu.com/go?to=https%3A%2F%2F' in line[i]:
                         line[i]=line[i].replace('links.jianshu.com/go?to=https%3A%2F%2F','')
                         line[i]=line[i].replace('%2F','/')
-                    if 'rel="nofollow">' in line[i]:
-                        line[i]=line[i].replace('rel="nofollow">','[')
-                    if '</a>' in line[i]:
-                        line[i]=line[i].replace('</a>',']')
 
                     if '<li><p>' in line[i]:
                         line[i]=line[i].replace('<li><p>','- ')
