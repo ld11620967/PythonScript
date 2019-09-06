@@ -1,5 +1,3 @@
-@file:Suppress("NAME_SHADOWING")
-
 import java.io.File
 import java.nio.charset.Charset
 
@@ -13,15 +11,12 @@ outFile.delete()
 var erase = false
 
 file.forEachLine(Charset.forName("GBK")) {
-    if (it.contains("<div class=\"show-content-free\">")) {
+    if (it.contains("<article class=\"_2rhmJa\"")) {
         erase = true
-    } else if (it.contains("<!-- 连载目录项 -->")) {
+    } else if (it.contains("</article>")) {
         erase = false
     } else if (erase) {
         var line = it
-        if ("            " in line) {
-            line = line.replace("            ", "")
-        }
         if ("<h1>" in line) {
             line = line.replace("<h1>", "## ").replace("</h1>", "")
         }
@@ -86,7 +81,7 @@ file.forEachLine(Charset.forName("GBK")) {
         if ("<img" in line) {
             val r1 = Regex("^<div(.*?)<img data-original-src=\"")
             val r2 = Regex("\" data-original-width(.*?)\"></div>")
-            line = line.replace(r1, "![Picture](").replace(r2, ")")
+            line = line.replace(r1, "![](").replace(r2, ")")
         }
         if ("</p>" in line) {
             line = line.replace("</p>", "\r\n")
