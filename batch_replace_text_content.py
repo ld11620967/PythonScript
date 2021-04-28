@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# coding: utf-8
 
 import os;
 
@@ -7,8 +7,8 @@ path=os.getcwd()
 str_file=os.getcwd()
 for dirpaths, dirnames, filenames in os.walk(str_file):
     for filename in filenames:
-        if filename.endswith('xml'):
-            print filename
+        if filename.endswith('txt'):
+            print (filename)
             with open(filename,'r')as f:
                 line= f.readlines()
                 for i in range(len(line)):
