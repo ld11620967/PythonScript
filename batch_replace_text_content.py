@@ -1,27 +1,17 @@
 #!/usr/bin/env python
-# coding: utf-8
+# coding=utf-8
 
 import os;
 
 path=os.getcwd()
-str_file=os.getcwd()
-for dirpaths, dirnames, filenames in os.walk(str_file):
+for dirpaths, dirnames, filenames in os.walk(path):
     for filename in filenames:
         if filename.endswith('txt'):
-            print (filename)
             with open(filename,'r')as f:
                 line= f.readlines()
                 for i in range(len(line)):
-                    if 'daluandou' in line[i]:
-                        line[i]=line[i].replace('daluandou','yingxionglianmeng')
+                    if 'http://' in line[i]:
+                        line[i]=line[i].replace(line[i][-6:],'12-26\n')
             open(filename,'w').writelines(line)
         else:
             pass
-
-
-
-
-
-
-
-
